@@ -7,7 +7,7 @@ import TagsInput from "react-tagsinput";
 import Autosuggest from "react-autosuggest";
 import { getStyling } from "./styles/global";
 
-const ThemeStyle = getStyling(localStorage.getItem("STRAPI_THEME"));
+const ThemeStyle = getStyling(getCurrentTheme());
 
 const Tags = ({
   attribute,
@@ -62,10 +62,10 @@ const Tags = ({
     const lastTag = newTags[newTags.length - 1];
     const suggestionsArray = suggestions.data || [];
     const existingTag = suggestionsArray.find(
-      (s) => s[attrName]?.toLowerCase() === lastTag.toLowerCase()
+      (s) => s[attrName]?.toLowerCase() === lastTag?.toLowerCase()
     );
 
-    if (!existingTag) {
+    if (lastTag && !existingTag) {
       if (apiUrl) {
         try {
           const response = await axios.post(apiUrl, {
@@ -134,7 +134,7 @@ const Tags = ({
       getSuggestions();
     }
 
-   if (inputLength > 0) {
+    if (inputLength > 0) {
       s = s
         .filter((state) => {
           const suggestionName = state[attrName] || "";
@@ -145,7 +145,7 @@ const Tags = ({
           [attrName]: state[attrName] || "",
         }));
     }
-    
+
     return (
       <Autosuggest
         ref={props.ref}
@@ -155,7 +155,7 @@ const Tags = ({
         renderSuggestion={(s) => <span>{s[attrName]}</span>}
         inputProps={{ ...props, onChange: handleOnChange }}
         onSuggestionSelected={(_, { suggestion }) => props.addTag(suggestion[attrName])}
-        onSuggestionsFetchRequested={() => {}}
+        onSuggestionsFetchRequested={() => { }}
       />
     );
   };
@@ -176,7 +176,7 @@ const Tags = ({
           style={{ position: "relative" }}
           ref={inputEle}
         >
-          {label && <Field.Label action={labelAction}>{formatMessage({ id: label, defaultMessage: "Tags" })}</Field.Label>}
+          {label && <Field.Label action={labelAction}>{formatMessage({ id: label, defaultMessage: label })}</Field.Label>}
           <ThemeStyle />
           <Flex direction="column">
             <TagsInput
