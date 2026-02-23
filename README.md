@@ -66,3 +66,11 @@ This repository is owned and maintained by the [Canopas team](https://canopas.co
 ## Licence
 
 This repository is licenced under [MIT](https://github.com/canopas/strapi-plugin-tagsinput/blob/master/LICENSE).
+
+## Custom Fix Purpose
+
+- **Plugin Tags Input**
+  - Fork from `strapi-plugin-tagsinput` to `gregcm999/strapi-plugin-tagsinput`
+  - **Improve theme handling**: Added system preference support for dark/light mode ([PR #45](https://github.com/canopas/strapi-plugin-tagsinput/pull/45))
+  - **Fix deletion error**: Resolved error when removing the last tag from the input field ([PR #44](https://github.com/canopas/strapi-plugin-tagsinput/pull/44))
+  - **Better field labels**: Updated custom tag fields to use their specific labels instead of a generic "Tags" label ([PR #42](https://github.com/canopas/strapi-plugin-tagsinput/pull/42))
