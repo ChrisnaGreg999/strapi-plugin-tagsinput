@@ -6,6 +6,7 @@ import { useIntl } from "react-intl";
 import TagsInput from "react-tagsinput";
 import Autosuggest from "react-autosuggest";
 import { getStyling } from "./styles/global";
+import { getCurrentTheme } from "../utils/getCurrentTheme";
 
 const ThemeStyle = getStyling(getCurrentTheme());
 
