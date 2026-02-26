@@ -38,13 +38,6 @@ const Tags = ({
   const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
-    const suggestionsContainer = document.querySelector(
-      ".react-autosuggest__suggestions-container"
-    );
-    if (suggestionsContainer && inputEle.current) {
-      suggestionsContainer.style.top = `${inputEle.current.offsetHeight + 5}px`;
-    }
-
     const handleClickOutside = (event) => {
       const tagsInput = document.querySelector(".react-tagsinput");
       if (tagsInput) {
@@ -63,7 +56,7 @@ const Tags = ({
     const lastTag = newTags[newTags.length - 1];
     const suggestionsArray = suggestions.data || [];
     const existingTag = suggestionsArray.find(
-      (s) => s[attrName]?.toLowerCase() === lastTag?.toLowerCase()
+      (s) => s[attrName] === lastTag
     );
 
     if (lastTag && !existingTag) {
@@ -139,7 +132,7 @@ const Tags = ({
       s = s
         .filter((state) => {
           const suggestionName = state[attrName] || "";
-          return suggestionName.toLowerCase().slice(0, inputLength) === inputValue;
+          return suggestionName.slice(0, inputLength) === inputValue;
         })
         .map((state) => ({
           id: state.id,
