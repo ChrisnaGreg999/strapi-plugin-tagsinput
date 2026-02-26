@@ -33,9 +33,9 @@ const styles = css`
     width: 100%;
     border: 1px solid var(--input-border);
     border-radius: 4px;
-    overflow: hidden;
     padding-left: 5px;
     padding-top: 5px;
+    position: relative;
   }
 
   .react-tagsinput--focused {
@@ -93,7 +93,9 @@ const styles = css`
   .react-autosuggest__suggestions-container {
     position: absolute;
     z-index: 200;
-    width: 280px;
+    width: 100%;
+    top: 100%;
+    left: 0;
     margin: 0;
     padding: 0;
     list-style-type: none;
