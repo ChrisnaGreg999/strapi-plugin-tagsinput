@@ -1,6 +1,6 @@
 {
   "name": "@gregcm999/strapi-plugin-tagsinput",
-  "version": "2.0.3-beta.7",
+  "version": "2.0.3-beta.9",
   "description": "Tagsinput plugin for your strapi project",
   "strapi": {
     "name": "tagsinput",
