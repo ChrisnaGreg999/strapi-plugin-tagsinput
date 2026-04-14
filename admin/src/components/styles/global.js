@@ -100,6 +100,22 @@ const styles = css`
     padding: 0;
     list-style-type: none;
     background-color: var(--suggestion-background);
+    max-height: 200px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--input-border);
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
   }
 
   .react-autosuggest__suggestions-container--open {
