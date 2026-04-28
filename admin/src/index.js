@@ -42,6 +42,28 @@ export default {
             ],
           },
         ],
+        advanced: [
+          {
+            sectionTitle: {
+              id: "global.settings",
+              defaultMessage: "Settings",
+            },
+            items: [
+              {
+                name: "required",
+                type: "checkbox",
+                intlLabel: {
+                  id: "form.attribute.item.requiredField",
+                  defaultMessage: "Required field",
+                },
+                description: {
+                  id: "form.attribute.item.requiredField.description",
+                  defaultMessage: "You won't be able to create an entry if this field is empty",
+                },
+              },
+            ],
+          },
+        ],
       },
     });
   },

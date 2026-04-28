@@ -90,7 +90,9 @@ const Tags = ({
 
     setTags(newTags);
 
-    const value = JSON.stringify(newTags.map((tag) => ({ [attrName]: tag })));
+    const value = newTags.length > 0
+      ? JSON.stringify(newTags.map((tag) => ({ [attrName]: tag })))
+      : null;
 
     onChange({
       target: {
