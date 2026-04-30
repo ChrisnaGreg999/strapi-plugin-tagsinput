@@ -6,7 +6,7 @@ export default {
     app.customFields.register({
       name: "tags",
       pluginId: pluginId,
-      type: "json",
+      type: "string",
       intlLabel: {
         id: getTranslation('form.label'),
         defaultMessage: 'TagsInput',

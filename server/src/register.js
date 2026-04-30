@@ -4,6 +4,8 @@ module.exports = ({ strapi }) => {
   strapi.customFields.register({
     name: "tags",
     plugin: "tagsinput",
-    type: "json",
+    type: "string",
+    searchable: true,
+    orderable: true,
   });
 };
