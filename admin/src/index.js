@@ -6,7 +6,7 @@ export default {
     app.customFields.register({
       name: "tags",
       pluginId: pluginId,
-      type: "json",
+      type: "string",
       intlLabel: {
         id: getTranslation('form.label'),
         defaultMessage: 'TagsInput',
@@ -38,6 +38,28 @@ export default {
                 type: "text",
                 value: "",
                 options: [],
+              },
+            ],
+          },
+        ],
+        advanced: [
+          {
+            sectionTitle: {
+              id: "global.settings",
+              defaultMessage: "Settings",
+            },
+            items: [
+              {
+                name: "required",
+                type: "checkbox",
+                intlLabel: {
+                  id: "form.attribute.item.requiredField",
+                  defaultMessage: "Required field",
+                },
+                description: {
+                  id: "form.attribute.item.requiredField.description",
+                  defaultMessage: "You won't be able to create an entry if this field is empty",
+                },
               },
             ],
           },

@@ -35,7 +35,7 @@ const Tags = ({
     }
   });
 
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState({ data: [] });
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -90,7 +90,9 @@ const Tags = ({
 
     setTags(newTags);
 
-    const value = JSON.stringify(newTags.map((tag) => ({ [attrName]: tag })));
+    const value = newTags.length > 0
+      ? JSON.stringify(newTags.map((tag) => ({ [attrName]: tag })))
+      : null;
 
     onChange({
       target: {
@@ -120,19 +122,23 @@ const Tags = ({
       }
     };
 
+    const handleOnFocus = (e) => {
+      getSuggestions();
+      if (props.onFocus) {
+        props.onFocus(e);
+      }
+    };
+
     const inputValue = (props.value && props.value.trim()) || "";
     const inputLength = inputValue.length;
 
     let s = suggestions.data || [];
-    if (s.length <= 0) {
-      getSuggestions();
-    }
 
     if (inputLength > 0) {
       s = s
         .filter((state) => {
           const suggestionName = state[attrName] || "";
-          return suggestionName.slice(0, inputLength) === inputValue;
+          return suggestionName.toLowerCase().startsWith(inputValue.toLowerCase());
         })
         .map((state) => ({
           id: state.id,
@@ -140,14 +146,15 @@ const Tags = ({
         }));
     }
 
+
     return (
       <Autosuggest
         ref={props.ref}
         suggestions={s}
-        shouldRenderSuggestions={(value) => value && value.trim().length > 0}
+        shouldRenderSuggestions={() => true}
         getSuggestionValue={(s) => s[attrName]}
         renderSuggestion={(s) => <span>{s[attrName]}</span>}
-        inputProps={{ ...props, onChange: handleOnChange }}
+        inputProps={{ ...props, onChange: handleOnChange, onFocus: handleOnFocus }}
         onSuggestionSelected={(_, { suggestion }) => props.addTag(suggestion[attrName])}
         onSuggestionsFetchRequested={() => { }}
       />
